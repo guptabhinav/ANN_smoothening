@@ -58,7 +58,7 @@ print(f'GPU name: {gpu_name}')
 
 # In[6]:
 
-file = open(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/free_energy_2D')
+file = open(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/free_energy_2D')
 
 phi1 = np.array([])
 phi2 = np.array([])
@@ -224,7 +224,7 @@ plt.title('Tracking Loss during Training')
 plt.xlabel('epochs')
 plt.ylabel('Loss')
 plt.legend(loc='best')
-plt.savefig(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/loss.jpg')
+plt.savefig(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/loss.jpg')
 
 
 # ## Testing on Training dataset
@@ -249,7 +249,7 @@ plt.legend(loc='best')
 plt.title('Testing on Training Data Set')
 plt.xlabel('Count')
 plt.ylabel('Free Energy (kcal/mol)')
-plt.savefig(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/pred_train.jpg')
+plt.savefig(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/pred_train.jpg')
 
 
 # In[24]:
@@ -264,7 +264,7 @@ plt.yticks(np.linspace(-3,3,7))
 plt.title('Deviation of Predicted Values of Training Dataset')
 plt.xlabel('Count')
 plt.ylabel('Free Energy (kcal/mol)')
-plt.savefig(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/dev_train.jpg')
+plt.savefig(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/dev_train.jpg')
 
 # # Testing on testing dataset
 
@@ -285,7 +285,7 @@ plt.legend(loc='best')
 plt.title('Actal v/s Predicted values Comparision')
 plt.xlabel('Count')
 plt.ylabel('Free Energy (kcal/mol)')
-plt.savefig(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/pred.jpg')
+plt.savefig(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/pred.jpg')
 
 # In[27]:
 
@@ -300,7 +300,7 @@ plt.yticks(np.linspace(-3,3,7))
 plt.title('Deviation of Predicted Values')
 plt.xlabel('Count')
 plt.ylabel('Free Energy (kcal/mol)')
-plt.savefig(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/dev.jpg')
+plt.savefig(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/dev.jpg')
 
 # # Calculating the root mean squared deviation of the predicted values from the actual values
 
@@ -343,7 +343,7 @@ print(f'L2 Error: {l2_train} kcal/mol')
 data_2d_end = time.process_time_ns()
 
 #Writing the errors to a file:
-error = open(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/data.out', 'w')
+error = open(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/data.out', 'w')
 error.write('========================================================\n')
 error.write(f'Errors - ANN-{method}-{CV}-{model_time}ns\n')
 error.write('========================================================\n')
@@ -370,7 +370,7 @@ model = {
     'optim_state': optimizer.state_dict()
 }
 
-torch.save(model, f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/nn_pentapeptide_2D.pt')
+torch.save(model, f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/nn_pentapeptide_2D.pt')
 
 # # Generating the surface
 
@@ -391,7 +391,7 @@ for Xi in xy_gpu:
     output = net.forward(Xi)
     fz = np.append(fz, output.cpu().detach().numpy())
 
-output = open(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/ANN_{method}_{CV}_{model_time}ns_100grid', 'w')
+output = open(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/ANN_{method}_{CV}_{model_time}ns_100grid', 'w')
 surface = np.column_stack([xy,fz])
 
 c = 0
@@ -447,7 +447,7 @@ ax = Axes3D(fig)
 ax.view_init(elev=60, azim=300)
 ax.plot_surface(yy, xx, zz, cmap='seismic')
 plt.suptitle('Predicted Surface')
-plt.savefig(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/fes_100grid.jpg')
+plt.savefig(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/fes_100grid.jpg')
 
 matplotlib.rcParams['contour.negative_linestyle'] = 'solid'
 fig  = plt.figure(figsize=(7,5))
@@ -455,7 +455,7 @@ plt.contour(x_range, y_range, np.transpose(zz), 20, colors='k')
 plt.contourf(x_range, y_range, np.transpose(zz), 20, cmap='seismic')
 plt.title('Predicted Contour')
 plt.colorbar()
-plt.savefig(f'/home/sl302/USERS/Suraj/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/fes_contour_100grid.jpg')
+plt.savefig(f'/home/sl302/Pentapeptide/{method}/{CV}/{model_time}ns/train_test_50_50/plots/fes_contour_100grid.jpg')
 
 print('THE END!')
 sys.exit(0)
